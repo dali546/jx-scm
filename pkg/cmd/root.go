@@ -2,6 +2,7 @@ package cmd
 
 import (
 	pull "github.com/jenkins-x-plugins/jx-scm/pkg/cmd/pull_request"
+	"github.com/jenkins-x-plugins/jx-scm/pkg/cmd/oauth"
 	"github.com/jenkins-x-plugins/jx-scm/pkg/cmd/release"
 	"github.com/jenkins-x-plugins/jx-scm/pkg/cmd/repository"
 	"github.com/jenkins-x-plugins/jx-scm/pkg/cmd/version"
@@ -27,6 +28,7 @@ func Main() *cobra.Command {
 	cmd.AddCommand(release.NewCmdRelease())
 	cmd.AddCommand(repository.NewCmdRepository())
 
+	cmd.AddCommand(cobras.SplitCommand(oauth.NewCmdUpdateSecret()))
 	cmd.AddCommand(cobras.SplitCommand(version.NewCmdVersion()))
 	return cmd
 }

@@ -61,7 +61,7 @@ func (o *Options) Validate() (*scm.Client, error) {
 
 	var err error
 	if o.ScmClient == nil {
-		o.ScmClient, err = factory.NewClient(o.Kind, o.Server, o.Token, factory.SetUsername(o.Username))
+		o.ScmClient, err = factory.NewClient(o.Kind, o.Server, o.Token, factory.SetUsername(o.Username), EnableBBOAuth())
 		if err != nil {
 			return o.ScmClient, errors.Wrapf(err, "failed to create ScmClient for kind %s server %s", o.Kind, o.Server)
 		}
